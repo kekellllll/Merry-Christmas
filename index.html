@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-night">
+        <div class="moon"></div>
+        <div class="mountains"></div>
+        <div class="clouds"></div>
+    </div>
+
+    <canvas id="snowCanvas"></canvas>
+
+    <div class="scene-container">
+        <!-- 1. 3D Stereo Santa (SVG) - FLIPPED & SCALED -->
+        <div class="santa-wrapper">
+            <svg class="santa-svg" viewBox="0 0 350 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="sleighGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#D32F2F;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#B71C1C;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#7F0000;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFF176;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#FBC02D;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#F57F17;stop-opacity:1" />
+                    </linearGradient>
+                    <radialGradient id="deerBodyGrad" cx="40%" cy="30%" r="80%">
+                        <stop offset="0%" style="stop-color:#A1887F;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#5D4037;stop-opacity:1" />
+                    </radialGradient>
+                    <radialGradient id="bagGrad" cx="30%" cy="30%" r="70%">
+                        <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#1B5E20;stop-opacity:1" />
+                    </radialGradient>
+                </defs>
+
+                <!-- Reins -->
+                <path d="M110,55 Q190,65 260,45" stroke="#FBC02D" stroke-width="2" fill="none" />
+
+                <!-- === Sleigh Group === -->
+                <g transform="translate(0, 20)">
+                     <!-- Runners -->
+                    <path d="M10,70 L90,70 Q110,70 115,50" stroke="url(#goldGrad)" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    <path d="M35,70 L35,55 M75,70 L75,55" stroke="url(#goldGrad)" stroke-width="4" />
+                    
+                    <!-- Body -->
+                    <path fill="url(#sleighGrad)" d="M20,55 L100,55 Q115,55 120,40 L100,40 L90,25 L30,25 Q15,25 20,55 Z" />
+                    
+                    <!-- Santa -->
+                    <g transform="translate(55, 15)">
+                        <circle cx="10" cy="15" r="18" fill="url(#bagGrad)" /> <!-- Bag -->
+                        <path fill="#B71C1C" d="M15,40 L45,40 L50,20 Q40,15 30,20 Z" /> <!-- Body -->
+                        <circle cx="33" cy="15" r="9" fill="#FFCCBC" /> <!-- Head -->
+                        <path fill="#EEE" d="M25,15 Q33,32 43,15 Q43,22 35,26 Q25,22 25,15 Z" /> <!-- Beard -->
+                        <path fill="#D32F2F" d="M25,12 Q33,-5 43,12" /> <!-- Hat -->
+                        <circle cx="43" cy="12" r="3" fill="white" />
+                        
+                        <!-- Arm -->
+                        <path d="M35,25 Q50,10 55,5" stroke="#B71C1C" stroke-width="6" stroke-linecap="round" />
+                        <circle cx="55" cy="5" r="4" fill="white" />
+                    </g>
+                </g>
+
+                <!-- === High Quality Cartoon Reindeer === -->
+                <g transform="translate(220, 10)">
+                    <!-- Reindeer (Front) -->
+                    <g transform="translate(0, 0)">
+                        <!-- Back Leg (Far) -->
+                        <path fill="#5D4037" d="M25,50 Q20,60 10,55 L15,45 Z" />
+                        <!-- Front Leg (Far) -->
+                        <path fill="#5D4037" d="M80,50 Q90,40 100,45 L95,35 Z" />
+
+                        <!-- Body Main -->
+                        <path fill="#8D6E63" d="M30,35 Q35,20 55,20 L75,20 Q95,20 100,35 Q105,50 90,55 L80,55 Q70,60 60,55 L40,55 Q30,50 35,35 Z" />
+                        
+                        <!-- Belly Highlight -->
+                        <path fill="#A1887F" d="M40,55 Q50,50 80,55 L75,45 Q60,40 45,45 Z" opacity="0.6" />
+
+                        <!-- Tail -->
+                        <path fill="#8D6E63" d="M30,35 Q25,30 20,35 Q23,40 30,38 Z" />
+
+                        <!-- Back Leg (Near) -->
+                        <path fill="#8D6E63" d="M35,45 Q30,55 20,60 L15,50 L25,40 Z" />
+                        <path fill="#3E2723" d="M20,60 L15,65 L10,60 L15,50 Z" /> <!-- Hoof -->
+
+                        <!-- Front Leg (Near) -->
+                        <path fill="#8D6E63" d="M90,45 Q95,55 105,50 L110,40 L95,35 Z" />
+                        <path fill="#3E2723" d="M105,50 L110,55 L115,50 L110,40 Z" /> <!-- Hoof -->
+
+                        <!-- Head Group -->
+                        <g transform="translate(85, 5)">
+                             <!-- Neck -->
+                             <path fill="#8D6E63" d="M-5,20 Q5,10 10,15 L5,25 Z" />
+                             
+                             <!-- Head Base -->
+                             <path fill="#8D6E63" d="M0,10 Q5,0 15,0 Q25,0 30,10 Q35,15 30,22 Q25,28 15,25 Q5,22 0,10 Z" />
+                             <!-- Muzzle (Light Color) -->
+                             <path fill="#D7CCC8" d="M20,12 Q30,12 32,18 Q34,24 25,25 Q18,26 18,18 Z" />
+                             
+                             <!-- Nose (Rudolph Glowing) -->
+                             <circle cx="32" cy="16" r="4" fill="#FF0000">
+                                <animate attributeName="fill-opacity" values="1;0.7;1" dur="1s" repeatCount="indefinite" />
+                                <animate attributeName="r" values="4;4.5;4" dur="1s" repeatCount="indefinite" />
+                             </circle>
+
+                             <!-- Eye (Big & Cute) -->
+                             <circle cx="15" cy="12" r="3" fill="#3E2723" />
+                             <circle cx="16.5" cy="11" r="1" fill="white" /> <!-- Shine -->
+
+                             <!-- Ear -->
+                             <path fill="#8D6E63" d="M5,10 Q0,5 -2,10 Q0,15 5,12 Z" />
+                             <path fill="#5D4037" d="M5,10 Q2,8 1,10 Z" /> <!-- Inner Ear -->
+
+                             <!-- Antlers (Rounded) -->
+                             <path stroke="#5D4037" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M10,5 L15,-10 M15,-10 L10,-15 M15,-10 L22,-15 M13,0 L6,-5" />
+                        </g>
+
+                        <!-- Red Scarf (Flying) -->
+                        <path fill="#C62828" d="M80,22 Q85,18 90,22 L88,28 Q82,30 78,25 Z" /> <!-- Neck part -->
+                        <path fill="#C62828" d="M82,25 Q70,25 60,20 L62,15 Q75,20 82,22 Z" /> <!-- Tail part -->
+                    </g>
+                </g>
+            </svg>
+            <div class="magic-dust"></div>
+        </div>
+
+        <!-- 2. UI -->
+        <div class="ui-container">
+            <h1 class="main-title">MERRY CHRISTMAS</h1>
+            <div class="input-area">
+                <input type="text" id="nameInput" placeholder="Type Name..." autocomplete="off">
+            </div>
+            <div class="message-area">
+                <p class="to-line">To <span id="nameDisplay">Classmate</span></p>
+                <p class="wish-line">WISHING YOU PEACE, JOY AND HAPPINESS.</p>
+            </div>
+        </div>
+
+        <!-- 3. 3D Stereo Tree (SVG) -->
+        <div class="tree-wrapper">
+            <svg class="tree-svg" viewBox="0 0 240 360" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="treeLayerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#1B5E20;stop-opacity:1" />
+                        <stop offset="40%" style="stop-color:#4CAF50;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#1B5E20;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="snowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#E0E0E0;stop-opacity:1" />
+                    </linearGradient>
+                    <filter id="dropShadow">
+                        <feDropShadow dx="0" dy="5" stdDeviation="5" flood-opacity="0.5"/>
+                    </filter>
+                </defs>
+
+                <rect x="105" y="310" width="30" height="40" fill="#3E2723" />
+
+                <g filter="url(#dropShadow)">
+                    <path fill="url(#treeLayerGrad)" d="M30,260 Q120,320 210,260 L160,180 L80,180 Z" />
+                    <path fill="url(#snowGrad)" d="M30,260 Q80,275 120,260 Q160,275 210,260 Q180,250 170,245 Q120,255 70,245 Q60,250 30,260 Z" opacity="0.9"/>
+                </g>
+                
+                <g filter="url(#dropShadow)">
+                    <path fill="url(#treeLayerGrad)" d="M50,190 Q120,240 190,190 L150,110 L90,110 Z" />
+                    <path fill="url(#snowGrad)" d="M50,190 Q90,205 120,190 Q150,205 190,190 Q165,180 155,175 Q120,185 85,175 Q75,180 50,190 Z" opacity="0.9"/>
+                </g>
+
+                <g filter="url(#dropShadow)">
+                    <path fill="url(#treeLayerGrad)" d="M70,120 Q120,160 170,120 L120,40 Z" />
+                    <path fill="url(#snowGrad)" d="M70,120 Q100,135 120,120 Q140,135 170,120 Q150,110 140,105 Q120,115 100,105 Q90,110 70,120 Z" opacity="0.9"/>
+                </g>
+
+                <path fill="url(#goldGrad)" d="M120,20 L126,38 L145,38 L130,50 L136,68 L120,56 L104,68 L110,50 L95,38 L114,38 Z" filter="drop-shadow(0 0 10px gold)">
+                     <animateTransform attributeName="transform" type="rotate" from="0 120 45" to="360 120 45" dur="10s" repeatCount="indefinite" />
+                </path>
+            </svg>
+
+            <div class="lantern-container">
+                <div class="lantern-group p1">
+                    <div class="rope"></div>
+                    <div class="lantern-body">福</div>
+                </div>
+                <div class="lantern-group p2">
+                    <div class="rope"></div>
+                    <div class="lantern-body"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="snow-ground"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
